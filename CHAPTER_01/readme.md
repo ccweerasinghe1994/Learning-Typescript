@@ -210,6 +210,42 @@ error. If you tried to run that code in JavaScript, it would crash!
 
 #### Freedom Through Restriction
 
+TypeScript allows us to specify what types of values may be provided for parameters
+and variables. Some developers find having to explicitly write out in your code how
+particular areas are supposed to work to be restrictive at first.
+
+But! I would argue that being “restricted” in this way is actually a good thing! By
+restricting our code to only being able to be used in the ways you specify, TypeScript
+can give you confidence that changes in one area of code won’t break other areas of
+code that use it.
+
+If, say, you change the number of required parameters for a function, TypeScript will
+let you know if you forget to update a place that calls the function.
+
+In the following example, sayMyName was changed from taking in two parameters
+to taking one parameter, but the call to it with two strings wasn’t updated and so is
+triggering a TypeScript complaint:
+
+```js
+// Previously: sayMyName(firstName, lastName) { ...
+function sayMyName(fullName) {
+console.log(`You acting kind of shady, ain't callin' me ${fullName}`);
+}
+sayMyName("Beyoncé", "Knowles");
+// ~~~~~~~~~
+// Expected 1 argument, but got 2.
+```
+
+That code would run without crashing in JavaScript, but its output would be different
+from expected (it wouldn’t include "Knowles"):
+
+```bash
+You acting kind of shady, ain't callin' me Beyoncé
+```
+
+Calling functions with the wrong number of arguments is exactly the sort of shortsighted
+JavaScript freedom that TypeScript restricts.
+
 #### Precise Documentation
 
 #### Stronger Developer Tooling
