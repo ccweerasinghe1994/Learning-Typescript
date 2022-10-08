@@ -181,6 +181,33 @@ that you could type them out in the Playground and tinker with them for fun.
 
 #### TypeScript in Action
 
+Take a look at this code snippet:
+
+```js
+const firstName = "Georgia";
+const nameLength = firstName.length();
+// ~~~~~~
+// This expression is not callable.
+```
+
+The code is written in normal JavaScript syntax—I haven’t introduced TypeScriptspecific
+syntax yet. If you were to run the TypeScript type checker on this code, it
+would use its knowledge that the length property of a string is a number—not a
+function—to give you the complaint shown in the comment.
+
+If you were to paste that code into the playground or an editor, it would be told by the
+language service to give you a little red squiggly under length indicating TypeScript’s
+displeasure with your code. Hovering over the squigglied code would give you the
+text of the complaint
+
+**TypeScript reporting an error on string length not being callable**
+
+![TypeScript reporting an error on string length not being callable](../img/1.png)
+
+Being told of these simple errors in your editor as you type them is a lot more
+pleasant than waiting until a particular line of code happens to be run and throw an
+error. If you tried to run that code in JavaScript, it would crash!
+
 #### Freedom Through Restriction
 
 #### Precise Documentation
