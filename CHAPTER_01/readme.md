@@ -128,6 +128,20 @@ across hundreds or even thousands of constantly updating files can be a real cho
 
 #### Weaker Developer Tooling
 
+Because JavaScript doesn’t provide built-in ways to identify types, and code easily
+diverges from JSDoc comments, it can be difficult to automate large changes to
+or gain insights about a codebase. JavaScript developers are often surprised to see
+features in typed languages such as C# and Java that allow developers to perform class
+member renamings or jump to the place an argument’s type was declared.
+
+*You may protest that modern IDEs such as VS Code do provide
+some development tools such as automated refactors to JavaScript.
+True, but: they use TypeScript or an equivalent under the hood for
+many of their JavaScript features, and those development tools are
+not as reliable or as powerful in most JavaScript code as they are in
+well-defined TypeScript code.*
+
+
 ### TypeScript
 
 ### Getting Started in the TypeScript Playground
