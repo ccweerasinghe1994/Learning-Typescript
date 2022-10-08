@@ -2,7 +2,7 @@
 
 - [HOME PAGE 🏠](#home-page-)
 - [Part I. Concepts](#part-i-concepts)
-  - [CHAPTER 1](#chapter-1)
+  - [CHAPTER 1 From JavaScript to TypeScript](#chapter-1-from-javascript-to-typescript)
     - [From JavaScript to TypeScript](#from-javascript-to-typescript)
     - [History of JavaScript](#history-of-javascript)
     - [Vanilla JavaScript’s Pitfalls](#vanilla-javascripts-pitfalls)
@@ -28,7 +28,7 @@
 
 # Part I. Concepts
 
-## CHAPTER 1 
+## CHAPTER 1 From JavaScript to TypeScript
 
 ### From JavaScript to TypeScript
 
