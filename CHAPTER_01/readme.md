@@ -296,6 +296,35 @@ Features”.
 
 #### Compiling Syntax
 
+TypeScript’s compiler allows us to input TypeScript syntax, have it type checked,
+and get the equivalent JavaScript emitted. As a convenience, the compiler may also
+take modern JavaScript syntax and compile it down into its older ECMAScript
+equivalents.
+
+If you were to paste this TypeScript code into the Playground:
+
+```ts
+const artist = "Augusta Savage";
+console.log({ artist });
+```
+
+The Playground would show you on the right-hand side of the screen that this would
+be the equivalent JavaScript output by the compiler
+
+```js
+"use strict";
+const artist = "Augusta Savage";
+console.log({ artist });
+```
+
+The TypeScript Playground is a great tool for showing how source TypeScript
+becomes output JavaScript.
+
+*Many JavaScript projects use dedicated transpilers such as Babel
+(<https://babeljs.io>) instead of TypeScript’s own to transpile source
+code into runnable JavaScript. You can find a list of common
+project starters on <https://learningtypescript.com/starters>.*
+
 ### Getting Started Locally
 
 ### What TypeScript Is Not
