@@ -141,8 +141,31 @@ many of their JavaScript features, and those development tools are
 not as reliable or as powerful in most JavaScript code as they are in
 well-defined TypeScript code.*
 
-
 ### TypeScript
+
+TypeScript was created internally at Microsoft in the early 2010s then released and
+open sourced in 2012. The head of its development is Anders Hejlsberg, notable for
+also having lead the development of the popular C# and Turbo Pascal languages.
+TypeScript is often described as a “superset of JavaScript” or “JavaScript with types.”
+But what is TypeScript?
+
+TypeScript is four things:
+
+- **Programming language**
+A language that includes all the existing JavaScript syntax, plus new TypeScriptspecific
+syntax for defining and using types
+
+- **Type checker**
+A program that takes in a set of files written in JavaScript and/or TypeScript,
+develops an understanding of all the constructs (variables, functions…) created,
+and lets you know if it thinks anything is set up incorrectly
+- **Compiler**
+A program that runs the type checker, reports any issues, then outputs the
+equivalent JavaScript code
+
+- **Language service**
+A program that uses the type checker to tell editors such as VS Code how to
+provide helpful utilities to developers
 
 ### Getting Started in the TypeScript Playground
 
