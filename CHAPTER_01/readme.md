@@ -169,6 +169,16 @@ provide helpful utilities to developers
 
 ### Getting Started in the TypeScript Playground
 
+You’ve read a good amount about TypeScript by now. Let’s get you writing it!
+
+The main TypeScript website includes a “Playground” editor at <https://www.typescript>
+lang.org/play. You can type code into the main editor and see many of the same
+editor suggestions you would see when working with TypeScript locally in a full IDE
+(Integrated Development Environment).
+
+Most of the snippets in this book are intentionally small and self-contained enough
+that you could type them out in the Playground and tinker with them for fun.
+
 #### TypeScript in Action
 
 #### Freedom Through Restriction
