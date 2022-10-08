@@ -1,8 +1,8 @@
 # [HOME PAGE 🏠](../README.MD)
 
 - [HOME PAGE 🏠](#home-page-)
+- [Part I. Concepts](#part-i-concepts)
   - [CHAPTER 1](#chapter-1)
-  - [Part I. Concepts](#part-i-concepts)
     - [From JavaScript to TypeScript](#from-javascript-to-typescript)
     - [History of JavaScript](#history-of-javascript)
     - [Vanilla JavaScript’s Pitfalls](#vanilla-javascripts-pitfalls)
@@ -26,9 +26,9 @@
       - [Finished Evolving](#finished-evolving)
     - [Summary](#summary)
 
-## CHAPTER 1
+# Part I. Concepts
 
-## Part I. Concepts
+## CHAPTER 1 
 
 ### From JavaScript to TypeScript
 
@@ -618,3 +618,21 @@ been released. Some of the TypeScript error messages in this book might even alr
 be out of date!
 
 ### Summary
+
+In this chapter, you read up on the context for some of JavaScript’s main weaknesses,
+where TypeScript comes into play, and how to get started with TypeScript:
+
+- A brief history of JavaScript
+- JavaScript’s pitfalls: costly freedom, loose documentation, and weaker developer
+tooling
+- What TypeScript is: a programming language, a type checker, a compiler, and a
+language service
+- TypeScript’s advantages: freedom through restriction, precise documentation,
+and stronger developer tooling
+- Getting started writing TypeScript code on the TypeScript Playground and locally
+on your computer
+- What TypeScript is not: a remedy for bad code, extensions to JavaScript (mostly),
+slower than JavaScript, or finished evolving
+
+*Now that you’ve finished reading this chapter, practice what
+you’ve learned on https://learningtypescript.com/from-javascript-totypescript.*
