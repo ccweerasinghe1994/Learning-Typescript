@@ -20,6 +20,10 @@
       - [Running Locally](#running-locally)
       - [Editor Features](#editor-features)
     - [What TypeScript Is Not](#what-typescript-is-not)
+      - [A Remedy for Bad Code](#a-remedy-for-bad-code)
+      - [Extensions to JavaScript (Mostly)](#extensions-to-javascript-mostly)
+      - [Slower Than JavaScript](#slower-than-javascript)
+      - [Finished Evolving](#finished-evolving)
     - [Summary](#summary)
 
 ## CHAPTER 1
@@ -537,5 +541,80 @@ I’ll cover editor features more deeply in Chapter 12, “Using IDE
 Features”.*
 
 ### What TypeScript Is Not
+Now that you’ve seen how wonderful TypeScript is, I have to warn you about some
+limitations. Every tool excels at some areas and has limitations in others.
+
+#### A Remedy for Bad Code
+TypeScript helps you structure your JavaScript, but other than enforcing type safety, it
+doesn’t enforce any opinions on what that structure should look like.
+
+Good!
+TypeScript is a language that everyone is meant to be able to use, not an opinionated
+framework with a target audience. You can write code using whatever architectural
+patterns you’re used to from JavaScript, and TypeScript will support them.
+If anybody tries to tell you that TypeScript forces you to use classes, or makes it hard
+to write good code, or whatever code style complaints are out there, give them a
+stern look and tell them to pick up a copy of Learning TypeScript. TypeScript does
+not enforce code style opinions such as whether to use classes or functions, nor is
+it associated with any particular application framework—Angular, React, etc.—over
+others.
+
+#### Extensions to JavaScript (Mostly)
+
+TypeScript’s design goals explicitly state that it should:
+
+- Align with current and future ECMAScript proposals
+- Preserve runtime behavior of all JavaScript code
+
+TypeScript does not try to change how JavaScript works at all. Its creators have tried
+very hard to avoid adding new code features that would add to or conflict with
+JavaScript. Such a task is the domain of TC39, the technical committee that works on
+ECMAScript itself.
+
+There are a few older features in TypeScript that were added many years ago to reflect
+common use cases in JavaScript code. Most of those features are either relatively
+uncommon or have fallen out of favor, and are only covered briefly in Chapter 14,
+“Syntax Extensions”. I recommend staying away from them in most cases.
+
+*As of 2022, TC39 is investigating adding a syntax for type annotations
+to JavaScript. The latest proposals have them acting as a form
+of comments that do not impact code at runtime and are used
+only for development-time systems such as TypeScript. It will be
+many years until type comments or some equivalent are added to
+JavaScript, so they won’t be mentioned elsewhere in this book.*
+
+#### Slower Than JavaScript
+
+Sometimes on the internet, you might hear some opinionated developers complain
+that TypeScript is slower than JavaScript at runtime. That claim is generally inaccurate
+and misleading. The only changes TypeScript makes to code are if you ask it to
+compile your code down to earlier versions of JavaScript to support older runtime
+environments such as Internet Explorer 11. Many production frameworks don’t use
+TypeScript’s compiler at all, instead using a separate tool for transpilation (the part of
+compiling that converts source code from one programming language into another)
+and TypeScript only for type checking.
+
+TypeScript does, however, add some time to building your code. TypeScript code
+must be compiled down to JavaScript before most environments, such as browsers
+and Node.js, will run it. Most build pipelines are generally set up so that the performance
+hit is negligible, and slower TypeScript features such as analyzing code for
+likely mistakes are done separately from generating runnable application code files.
+
+Even projects that seemingly allow running TypeScript code
+directly, such as ts-node and Deno, themselves internally convert
+TypeScript code to JavaScript before running it.
+
+#### Finished Evolving
+
+The web is nowhere near finished evolving, and thus neither is TypeScript. The
+TypeScript language is constantly receiving bug fixes and feature additions to match
+the ever-shifting needs of the web community. The basic tenets of TypeScript you’ll
+learn in this book will remain about the same, but error messages, fancier features,
+and editor integrations will improve over time.
+
+In fact, while this edition of the book was published with TypeScript version 4.7.2 as
+the latest, by the time you started reading it, we can be certain a newer version has
+been released. Some of the TypeScript error messages in this book might even already
+be out of date!
 
 ### Summary
