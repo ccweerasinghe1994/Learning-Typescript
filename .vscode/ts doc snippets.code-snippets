@@ -22,5 +22,13 @@
 			"![img]($1);"
 		],
 		"description": "create a image file import in markdown"
+	},
+
+	"create a js code block":{
+		"scope": "markdown",
+		"prefix": "js",
+		"body": [
+			"```js $1 ```"
+		]
 	}
 }

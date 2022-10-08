@@ -18,6 +18,7 @@
       - [Compiling Syntax](#compiling-syntax)
     - [Getting Started Locally](#getting-started-locally)
       - [Running Locally](#running-locally)
+      - [Editor Features](#editor-features)
     - [What TypeScript Is Not](#what-typescript-is-not)
     - [Summary](#summary)
 
@@ -492,6 +493,48 @@ Indeed, blub does not exist on the console. What was I thinking?
 
 Before you fix the code to appease TypeScript, note that tsc created an index.js for
 you with contents including the console.blub.
+
+*This is an important concept: even though there was a type error
+in our code, the syntax was still completely valid. The TypeScript
+compiler will still produce JavaScript from an input file regardless
+of any type errors.*
+
+Correct the code in index.ts to call console.log and run tsc again. There should
+be no complaints in your terminal, and the index.js file should now contain updated
+output code:
+
+```js 
+console.log("Nothing is worth more than laughter.");
+ ```
+*highly recommend playing with the book’s snippets as you read
+through them, either in the playground or in an editor with Type‐
+Script support, meaning it runs the TypeScript language service
+for you. Small self-contained exercises, as well as larger projects,
+are also available to help you practice what you’ve learned on
+https://learningtypescript.com.*
+
+#### Editor Features
+
+Another benefit of creating a tsconfig.json file is that when editors are opened to
+a particular folder, they will now recognize that folder as a TypeScript project. For
+example, if you open VS Code in a folder, the settings it uses to analyze your
+TypeScript code will respect whatever’s in that folder’s tsconfig.json.
+
+As an exercise, go back through the code snippets in this chapter and type them in
+your editor. You should see drop-downs suggesting completions for names as you
+type them, especially for members such as the log on console.
+
+Very exciting: you’re using the TypeScript language service to help yourself write
+code! You’re on your way to being a TypeScript developer!.
+
+*VS Code comes with great TypeScript support and is itself built
+in TypeScript. You don’t have to use it for TypeScript—virtually all
+modern editors have excellent TypeScript support either built-in
+or available via plugins—but I do recommend it for at least trying
+out TypeScript while reading through this book. If you do use a
+different editor, I also recommend enabling its TypeScript support.
+I’ll cover editor features more deeply in Chapter 12, “Using IDE
+Features”.*
 
 ### What TypeScript Is Not
 
