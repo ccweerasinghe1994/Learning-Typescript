@@ -24,39 +24,6 @@ Using Type-Safe JavaScript
     - [What TypeScript Is Not](#what-typescript-is-not)
     - [Summary](#summary)
 
-## Part I. Concepts
-
-### 1. From JavaScript to TypeScript
-
-### History of JavaScript
-
-### Vanilla JavaScript’s Pitfalls
-
-#### Costly Freedom
-
-#### Loose Documentation
-
-#### Weaker Developer Tooling
-
-### TypeScript
-
-### Getting Started in the TypeScript Playground
-
-#### TypeScript in Action
-
-#### Freedom Through Restriction
-
-#### Precise Documentation
-
-#### Stronger Developer Tooling
-
-#### Compiling Syntax
-
-### Getting Started Locally
-
-### What TypeScript Is Not
-
-### Summary
 
 ###
 
