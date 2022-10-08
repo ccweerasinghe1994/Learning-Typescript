@@ -30,5 +30,13 @@
 		"body": [
 			"```js $1 ```"
 		]
+	},
+	"create a ts code block":{
+		"scope": "markdown",
+		"prefix": "ts",
+		"body": [
+			"```ts $1 ```"
+		]
 	}
+
 }
