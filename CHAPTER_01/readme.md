@@ -96,6 +96,36 @@ safety in running your code.
 
 #### Loose Documentation
 
+Nothing exists in the JavaScript language specification to formalize describing what
+function parameters, function returns, variables, or other constructs in code are
+meant to be. Many developers have adopted a standard called JSDoc to describe
+functions and variables using block comments. The JSDoc standard describes how you might write documentation comments placed directly above constructs such as
+functions and variables, formatted in a standard way. Here’s an example, again taken
+out of context:
+
+```js
+/**
+* Performs a painter painting a particular painting.
+*
+* @param {Painting} painter
+* @param {string} painting
+* @returns {boolean} Whether the painter painted the painting.
+*/
+function paintPainting(painter, painting) { /* ... */ }
+```
+
+JSDoc has key issues that often make it unpleasant to use in a large codebase:
+
+- Nothing stops JSDoc descriptions from being wrong about code.
+Even if your JSDoc descriptions were previously correct, during code refactors
+- it can be difficult to find all the now-invalid JSDoc comments related to your
+changes.
+- Describing complex objects is unwieldy and verbose, requiring multiple standalone
+comments to define types and their relationships.
+
+Maintaining JSDoc comments across a dozen files doesn’t take up too much time, but
+across hundreds or even thousands of constantly updating files can be a real chore.
+
 #### Weaker Developer Tooling
 
 ### TypeScript
