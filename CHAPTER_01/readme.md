@@ -248,6 +248,25 @@ JavaScript freedom that TypeScript restricts.
 
 #### Precise Documentation
 
+Let’s look at a TypeScript-ified version of the paintPainting function from earlier.
+Although I haven’t yet gone over the specifics of TypeScript syntax for documenting
+types, the following snippet still hints at the great precision with which TypeScript
+can document code:
+
+```ts
+interface Painter {
+finish(): boolean;
+ownMaterials: Material[];
+paint(painting: string, materials: Material[]): boolean;
+}
+function paintPainting(painter: Painter, painting: string): boolean { /* ... */ }
+```
+
+A TypeScript developer reading this code for the first time could understand that
+painter has at least three properties, two of which are methods. By baking in syntax
+to describe the “shapes” of objects, TypeScript provides an excellent, enforced system
+for describing how objects look.
+
 #### Stronger Developer Tooling
 
 #### Compiling Syntax
