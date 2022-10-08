@@ -45,14 +45,19 @@ TC39, has released new versions of ECMAScript—the language specification that
 JavaScript is based on—yearly since 2015 with new features that bring it in line
 with other modern languages. Impressively, even with regular new language versions,
 JavaScript has managed to maintain backward compatibility for decades in varying
-environments, including browsers, embedded applications, and server runtimes.
+environments, including browsers, embedded applications, and server runtime's.
 
 Today, JavaScript is a wonderfully flexible language with a lot of strengths. One
 should appreciate that while JavaScript has its quirks, it’s also helped enable the
 incredible growth of web applications and the internet.
 
-
 ### Vanilla JavaScript’s Pitfalls
+
+Developers often refer to using JavaScript without any significant language extensions
+or frameworks as “vanilla”: referring to it being the familiar, original flavor. I’ll
+soon go over why TypeScript adds just the right flavor to overcome these particular
+major pitfalls, but it’s useful to understand just why they can be painful. All these
+weaknesses become more pronounced the larger and longer-lived a project gets.
 
 #### Costly Freedom
 
