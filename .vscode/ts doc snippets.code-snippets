@@ -23,12 +23,18 @@
 		],
 		"description": "create a image file import in markdown"
 	},
-
-	"create a js code block":{
+	"create a js code block": {
 		"scope": "markdown",
 		"prefix": "js",
 		"body": [
 			"```js $1 ```"
+		]
+	},
+	"create a ts code block": {
+		"scope": "markdown",
+		"prefix": "ts",
+		"body": [
+			"```ts $1 ```"
 		]
 	}
 }
