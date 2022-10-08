@@ -269,6 +269,31 @@ for describing how objects look.
 
 #### Stronger Developer Tooling
 
+TypeScript’s typings allow editors such as VS Code to gain much deeper insights into
+your code. They can then use those insights to surface intelligent suggestions as you
+type. These suggestions can be incredibly useful for development.
+
+If you’ve used VS Code to write JavaScript before, you might have noticed that
+it suggests “autocompletions” as you write code with built-in types of objects like
+strings. If, say, you start typing the member of something known to be a string,
+TypeScript can suggest all the members of the strings
+
+**TypeScript providing autocompletion suggestions in JavaScript for a string**
+
+![img](../img/2.png)
+
+When you add TypeScript’s type checker for understanding code, it can give you
+these useful suggestions even for code you’ve written. Upon typing painter. in
+the paintPainting function, TypeScript would take its knowledge that the painter
+parameter is of type Painter and the Painter type has the following members
+
+**TypeScript providing autocompletion suggestions in JavaScript for a string**
+
+![img](../img/3.png)
+
+Snazzy! I’ll cover a plethora of other useful editor features in Chapter 12, “Using IDE
+Features”.
+
 #### Compiling Syntax
 
 ### Getting Started Locally
