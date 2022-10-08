@@ -61,6 +61,39 @@ weaknesses become more pronounced the larger and longer-lived a project gets.
 
 #### Costly Freedom
 
+Many developers’ biggest gripe with JavaScript is unfortunately one of its key features:
+JavaScript provides virtually no restrictions in how you structure your code. That
+freedom makes it a ton of fun to start a project in JavaScript!
+
+As you get to have more and more files, though, it becomes apparent how that
+freedom can be damaging. Take the following snippet, presented out of context from
+some fictional painting application:
+
+```js
+function paintPainting(painter, painting) {
+return painter
+.prepare()
+.paint(painting, painter.ownMaterials)
+.finish();
+}
+```
+
+Reading that code without any context, you can only have vague ideas on how to call
+the paintPainting function. Perhaps if you’ve worked in the surrounding codebase
+you may recall that painter should be what’s returned by some getPainter function.
+You might even make a lucky guess that painting is a string.
+
+Even if those assumptions are correct, though, later changes to the code may invalidate
+them. Perhaps painting is changed from a string to some other data type, or
+maybe one or more of the painter’s methods are renamed.
+
+Other languages might refuse to let you run code if their compiler determines it
+would likely crash. Not so with dynamically typed languages—those that run code
+without checking if it will likely crash first—such as JavaScript.
+
+The freedom of code that makes JavaScript so fun becomes a real pain when you want
+safety in running your code.
+
 #### Loose Documentation
 
 #### Weaker Developer Tooling
