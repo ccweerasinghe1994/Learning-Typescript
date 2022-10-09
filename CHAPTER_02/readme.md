@@ -356,6 +356,46 @@ sometimes explicitly tell TypeScript information it wouldn’t have inferred nor
 
 ### Type Shapes
 
+TypeScript does more than check that the values assigned to variables match their
+original types. TypeScript also knows what member properties should exist on
+objects. If you attempt to access a property of a variable, TypeScript will make sure
+that property is known to exist on that variable’s type.
+
+Suppose we declare a rapper variable of type string. Later on, when we use that
+rapper variable, operations that TypeScript knows work on strings are allowed:
+
+```ts
+let rapper = "Queen Latifah";
+rapper.length; // ok
+```
+
+Operations that TypeScript doesn’t know to work on strings will not be allowed:
+
+```ts
+rapper.push('!');
+// ~~~~
+// Property 'push' does not exist on type 'string'.
+```
+
+Types can also be more complex shapes, most notably objects. In the following
+snippet, TypeScript knows the birthNames object doesn’t have a middleName key and
+complains:
+
+```ts
+let cher = {
+firstName: "Cherilyn",
+lastName: "Sarkisian",
+};
+cher.middleName;
+// ~~~~~~~~~~
+// Property 'middleName' does not exist on type
+// '{ firstName: string; lastName: string; }'.
+```
+
+TypeScript’s understanding of object shapes allows it to report issues with the usage
+of objects, not just assignability. Chapter 4, “Objects” will describe more of Type‐
+Script’s powerful features around objects and object types.
+
 #### Modules
 
 ### Summary
