@@ -480,3 +480,19 @@ CommonJS. TypeScript will generally see values returned from
 CommonJS-style require functions to be typed as any.*
 
 ### Summary
+
+In this chapter, you saw how TypeScript’s type system works at its core:
+
+• What a “type” is and the primitive types recognized by TypeScript
+• What a “type system” is and how TypeScript’s type system understands code
+• How type errors compare to syntax errors
+• Inferred variable types and variable assignability
+• Type annotations to explicitly declare variable types and avoid evolving any types
+• Object member checking on type shapes
+• ECMAScript module files’ declaration scoping compared to script files
+
+*Now that you’ve finished reading this chapter, practice what you’ve
+learned on <https://learningtypescript.com/the-type-system>.*
+
+*Why did the number and string break up?
+They weren’t each other’s types.*
