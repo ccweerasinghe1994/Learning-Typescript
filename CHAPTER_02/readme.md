@@ -238,9 +238,84 @@ book. Remember to read them carefully to understand reported differences between
 actual and expected types. Doing so will make it much easier to work with TypeScript
 when it’s giving you grief over type errors.
 
-
 ### Type Annotations
 
+Sometimes a variable doesn’t have an initial value for TypeScript to read. TypeScript
+won’t attempt to figure out the initial type of the variable from later uses. It’ll consider
+the variable by default to be implicitly the any type: indicating that it could be
+anything in the world.
+
+Variables that can’t have their initial type inferred go through what’s called an evolving
+any: rather than enforce any particular type, TypeScript will evolve its understanding
+of the variable’s type each time a new value is assigned.
+
+Here, assigning the evolving any variable rocker is first assigned a string, which
+means it has string methods such as toUpperCase, but then is evolved into a number:
+
+```ts
+let rocker; // Type: any
+rocker = "Joan Jett"; // Type: string
+rocker.toUpperCase(); // Ok
+rocker = 19.58; // Type: number
+rocker.toPrecision(1); // Ok
+rocker.toUpperCase();
+// ~~~~~~~~~~~
+// Error: 'toUpperCase' does not exist on type 'number'.
+```
+
+TypeScript was able to catch that we were calling the toUpperCase() method on a
+variable evolved to type number. However, it wasn’t able to tell us earlier whether it
+was intentional that we were evolving the variable from string to number in the first
+place.
+
+Allowing variables to be evolving any typed—and using the any type in general—
+partially defeats the purpose of TypeScript’s type checking! TypeScript works best
+when it knows what types your values are meant to be. Much of TypeScript’s type
+checking can’t be applied to any typed values because they don’t have known types
+to be checked. Chapter 13, “Configuration Options” will cover how to configure
+TypeScript’s implicit any complaints.
+
+TypeScript provides a syntax for declaring the type of a variable without having to
+assign it an initial value, called a type annotation. A type annotation is placed after the
+name of a variable and includes a colon followed by the name of a type.
+
+This type annotation indicates the rocker variable is meant to be type string:
+
+```ts
+let rocker: string;
+rocker = "Joan Jett";
+```
+
+These type annotations exist only for TypeScript—they don’t affect the runtime code
+and are not valid JavaScript syntax. If you run tsc to compile TypeScript source code
+to JavaScript, they’ll be erased. For example, the previous example would be compiled
+to roughly the following JavaScript:
+
+```js
+// output .js file
+let rocker;
+rocker = "Joan Jett";
+```
+
+Assigning a value whose type is not assignable to the variable’s annotated type will
+cause a type error.
+
+This snippet assigns a number to a rocker variable previously declared as type
+string, causing a type error:
+
+```ts
+let rocker: string;
+rocker = 19.58;
+// Error: Type 'number' is not assignable to type 'string'.
+ ```
+
+You’ll see through the next few chapters how type annotations allow you to augment
+TypeScript’s insights into your code, allowing it to give you better features during
+development. TypeScript contains an assortment of new pieces of syntax, such as
+these type annotations that exist only in the type system.
+
+*Nothing that exists only in the type system gets copied over into
+emitted JavaScript. TypeScript types don’t affect emitted JavaScript.*
 #### Unnecessary Type Annotations
 
 ### Type Shapes
