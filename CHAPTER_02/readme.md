@@ -224,6 +224,21 @@ complex objects.
 
 #### Understanding Assignability Errors
 
+Errors in the format “Type…is not assignable to type…” will be some of the most
+common types of errors you’ll see when writing TypeScript code.
+
+The first type mentioned in that error message is the value the code is attempting to
+assign to a recipient. The second type mentioned is the recipient being assigned the
+first type. For example, when we wrote lastName = true in the previous snippet,
+we were trying to assign the value of true—type boolean—to the recipient variable
+lastName—type string.
+
+You’ll see more and more complex assignability issues as you progress through this
+book. Remember to read them carefully to understand reported differences between
+actual and expected types. Doing so will make it much easier to work with TypeScript
+when it’s giving you grief over type errors.
+
+
 ### Type Annotations
 
 #### Unnecessary Type Annotations
