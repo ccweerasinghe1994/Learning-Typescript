@@ -5,6 +5,8 @@
     - [What’s in a Type?](#whats-in-a-type)
       - [Type Systems](#type-systems)
       - [Kinds of Errors](#kinds-of-errors)
+      - [Syntax errors](#syntax-errors)
+      - [Type errors](#type-errors)
     - [Assignability](#assignability)
       - [Understanding Assignability Errors](#understanding-assignability-errors)
     - [Type Annotations](#type-annotations)
@@ -20,15 +22,17 @@ Comes from flexibility
 Be careful with that!*
 
 ### What’s in a Type?
+
 A “type” is a description of what a JavaScript value shape might be. By “shape” I mean
 which properties and methods exist on a value, and what the built-in typeof operator
 would describe it as.
 
 For example, when you create a variable with the initial value "Aretha":
 
-```js 
+```js
 let singer = "Aretha";
  ```
+
 TypeScript can infer, or figure out, that the singer variable is of type string.
 
 The most basic types in TypeScript correspond to the seven basic kinds of primitives
@@ -58,7 +62,7 @@ primitive value into the TypeScript Playground or an IDE and hover your mouse ov
 the variable’s name. The resultant popover will include the name of the primitive,
 such as this screenshot showing hovering over a string variable
 
-```ts 
+```ts
 let singer:string = "Aertha";
 ```
 
@@ -66,7 +70,7 @@ TypeScript is also smart enough to be able to infer the type of a variable whose
 value is computed. In this example, TypeScript knows that the ternary expression
 always results in a string, so the bestSong variable is a string:
 
-```ts 
+```ts
 let bestSong = Math.random() > 0.5 ? "chain of Fools" : "respect";
 ```
 
@@ -78,6 +82,7 @@ Script has inferred the bestSong variable to be type string
 classes such as Boolean and Number wrap around their primitive
 equivalents. TypeScript best practice is generally to refer to the
 lower-case names, such as boolean and number, respectively.*
+
 #### Type Systems
 
 A type system is the set of rules for how a programming language understands what
@@ -117,6 +122,75 @@ Script code. Code snippets in this chapter and throughout the rest of this book 
 display more and more complex types that TypeScript will be able to infer from code.
 
 #### Kinds of Errors
+
+While writing TypeScript, the two kinds of “errors” you’ll come across most frequently
+are:
+
+**Syntax**
+Blocking TypeScript from being converted to JavaScript
+
+**Type**
+Something mismatched has been detected by the type checker
+
+The differences between the two are important.
+
+#### Syntax errors
+
+Syntax errors are when TypeScript detects incorrect syntax that it cannot understand
+as code. These block TypeScript from being able to properly generate output Java‐
+Script from your file. Depending on the tooling and settings you’re using to convert
+your TypeScript code to JavaScript, you might still get some kind of JavaScript output
+(in default tsc settings, you will). But if you do, it likely won’t look like what you
+expect.
+
+This input TypeScript has a syntax error for an unexpected let:
+
+```ts
+let let wat;
+// ~~~
+// Error: ',' expected.
+```
+
+Its compiled JavaScript output, depending on the TypeScript compiler version, may
+look something like:
+
+```ts
+ let let, wat;
+```
+
+*Although TypeScript will do its best to output JavaScript code
+regardless of syntax errors, the output code will likely not be what
+you wanted. It’s best to fix syntax errors before attempting to run
+the output JavaScript.*
+
+#### Type errors
+
+Type errors occur when your syntax is valid but the TypeScript type checker has
+detected an error with the program’s types. These do not block TypeScript syntax
+from being converted to JavaScript. They do, however, often indicate something will
+crash or behave unexpectedly if your code is allowed to run.
+
+You saw this in Chapter 1, “From JavaScript to TypeScript” with the console.blub
+example, where the code was syntactically valid but TypeScript could detect it would
+likely crash when run:
+
+```ts
+console.blub("Nothing is worth more than laughter.");
+// ~~~~
+// Error: Property 'blub' does not exist on type 'Console'.
+```
+
+Even though TypeScript may output JavaScript code despite the presence of type
+errors, type errors are generally a sign that the output JavaScript likely won’t run the
+way you wanted. It’s best to read them and consider fixing any reported issues before
+running JavaScript.
+
+*Some projects are configured to block running code during development
+until all TypeScript type errors—not just syntax—are fixed.
+Many developers, myself included, generally find this to be annoying
+and unnecessary. Most projects have a way to not be blocked,
+such as with the tsconfig.json file and configuration options covered
+in Chapter 13, “Configuration Options”.*
 
 ### Assignability
 
