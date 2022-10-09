@@ -316,7 +316,43 @@ these type annotations that exist only in the type system.
 
 *Nothing that exists only in the type system gets copied over into
 emitted JavaScript. TypeScript types don’t affect emitted JavaScript.*
+
 #### Unnecessary Type Annotations
+
+Type annotations allow us to provide information to TypeScript that it wouldn’t
+have been able to glean on its own. You could also use them on variables that
+have immediately inferable types, but you wouldn’t be telling TypeScript anything it
+doesn’t already know.
+
+The following : string type annotation is redundant because TypeScript could
+already infer that firstName be of type string:
+
+```ts
+let firstName: string = "Tina";
+// ~~~~~~~~ Does not change the type system...
+```
+
+If you do add a type annotation to a variable with an initial value, TypeScript will
+check that it matches the type of the variable’s value.
+
+The following firstName is declared to be of type string, but its initializer is the
+number 42, which TypeScript sees as an incompatibility:
+
+```ts
+let firstName: string = 42;
+// ~~~~~~~~~
+// Error: Type 'number' is not assignable to type 'string'.
+```
+
+Many developers—myself included—generally prefer not to add type annotations on
+variables where the type annotations wouldn’t change anything. Having to manually
+write out type annotations can be cumbersome—especially when they change, and
+for the complex types I’ll show you later in this book.
+
+It can sometimes be useful to include explicit type annotations on variables to clearly
+document the code and/or to make TypeScript protected against accidental changes
+to the variable’s type. We’ll see in later chapters how explicit type annotations can
+sometimes explicitly tell TypeScript information it wouldn’t have inferred normally.
 
 ### Type Shapes
 
