@@ -5,6 +5,8 @@
     - [Declaring Union Types](#declaring-union-types)
     - [Union Properties](#union-properties)
   - [Narrowing](#narrowing)
+
+
 _Nothing is constant
 Values may change over time
 (well, except constants)_
