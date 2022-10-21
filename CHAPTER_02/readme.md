@@ -224,12 +224,275 @@ complex objects.
 
 #### Understanding Assignability Errors
 
+Errors in the format “Type…is not assignable to type…” will be some of the most
+common types of errors you’ll see when writing TypeScript code.
+
+The first type mentioned in that error message is the value the code is attempting to
+assign to a recipient. The second type mentioned is the recipient being assigned the
+first type. For example, when we wrote lastName = true in the previous snippet,
+we were trying to assign the value of true—type boolean—to the recipient variable
+lastName—type string.
+
+You’ll see more and more complex assignability issues as you progress through this
+book. Remember to read them carefully to understand reported differences between
+actual and expected types. Doing so will make it much easier to work with TypeScript
+when it’s giving you grief over type errors.
+
 ### Type Annotations
+
+Sometimes a variable doesn’t have an initial value for TypeScript to read. TypeScript
+won’t attempt to figure out the initial type of the variable from later uses. It’ll consider
+the variable by default to be implicitly the any type: indicating that it could be
+anything in the world.
+
+Variables that can’t have their initial type inferred go through what’s called an evolving
+any: rather than enforce any particular type, TypeScript will evolve its understanding
+of the variable’s type each time a new value is assigned.
+
+Here, assigning the evolving any variable rocker is first assigned a string, which
+means it has string methods such as toUpperCase, but then is evolved into a number:
+
+```ts
+let rocker; // Type: any
+rocker = "Joan Jett"; // Type: string
+rocker.toUpperCase(); // Ok
+rocker = 19.58; // Type: number
+rocker.toPrecision(1); // Ok
+rocker.toUpperCase();
+// ~~~~~~~~~~~
+// Error: 'toUpperCase' does not exist on type 'number'.
+```
+
+TypeScript was able to catch that we were calling the toUpperCase() method on a
+variable evolved to type number. However, it wasn’t able to tell us earlier whether it
+was intentional that we were evolving the variable from string to number in the first
+place.
+
+Allowing variables to be evolving any typed—and using the any type in general—
+partially defeats the purpose of TypeScript’s type checking! TypeScript works best
+when it knows what types your values are meant to be. Much of TypeScript’s type
+checking can’t be applied to any typed values because they don’t have known types
+to be checked. Chapter 13, “Configuration Options” will cover how to configure
+TypeScript’s implicit any complaints.
+
+TypeScript provides a syntax for declaring the type of a variable without having to
+assign it an initial value, called a type annotation. A type annotation is placed after the
+name of a variable and includes a colon followed by the name of a type.
+
+This type annotation indicates the rocker variable is meant to be type string:
+
+```ts
+let rocker: string;
+rocker = "Joan Jett";
+```
+
+These type annotations exist only for TypeScript—they don’t affect the runtime code
+and are not valid JavaScript syntax. If you run tsc to compile TypeScript source code
+to JavaScript, they’ll be erased. For example, the previous example would be compiled
+to roughly the following JavaScript:
+
+```js
+// output .js file
+let rocker;
+rocker = "Joan Jett";
+```
+
+Assigning a value whose type is not assignable to the variable’s annotated type will
+cause a type error.
+
+This snippet assigns a number to a rocker variable previously declared as type
+string, causing a type error:
+
+```ts
+let rocker: string;
+rocker = 19.58;
+// Error: Type 'number' is not assignable to type 'string'.
+ ```
+
+You’ll see through the next few chapters how type annotations allow you to augment
+TypeScript’s insights into your code, allowing it to give you better features during
+development. TypeScript contains an assortment of new pieces of syntax, such as
+these type annotations that exist only in the type system.
+
+*Nothing that exists only in the type system gets copied over into
+emitted JavaScript. TypeScript types don’t affect emitted JavaScript.*
 
 #### Unnecessary Type Annotations
 
+Type annotations allow us to provide information to TypeScript that it wouldn’t
+have been able to glean on its own. You could also use them on variables that
+have immediately inferable types, but you wouldn’t be telling TypeScript anything it
+doesn’t already know.
+
+The following : string type annotation is redundant because TypeScript could
+already infer that firstName be of type string:
+
+```ts
+let firstName: string = "Tina";
+// ~~~~~~~~ Does not change the type system...
+```
+
+If you do add a type annotation to a variable with an initial value, TypeScript will
+check that it matches the type of the variable’s value.
+
+The following firstName is declared to be of type string, but its initializer is the
+number 42, which TypeScript sees as an incompatibility:
+
+```ts
+let firstName: string = 42;
+// ~~~~~~~~~
+// Error: Type 'number' is not assignable to type 'string'.
+```
+
+Many developers—myself included—generally prefer not to add type annotations on
+variables where the type annotations wouldn’t change anything. Having to manually
+write out type annotations can be cumbersome—especially when they change, and
+for the complex types I’ll show you later in this book.
+
+It can sometimes be useful to include explicit type annotations on variables to clearly
+document the code and/or to make TypeScript protected against accidental changes
+to the variable’s type. We’ll see in later chapters how explicit type annotations can
+sometimes explicitly tell TypeScript information it wouldn’t have inferred normally.
+
 ### Type Shapes
+
+TypeScript does more than check that the values assigned to variables match their
+original types. TypeScript also knows what member properties should exist on
+objects. If you attempt to access a property of a variable, TypeScript will make sure
+that property is known to exist on that variable’s type.
+
+Suppose we declare a rapper variable of type string. Later on, when we use that
+rapper variable, operations that TypeScript knows work on strings are allowed:
+
+```ts
+let rapper = "Queen Latifah";
+rapper.length; // ok
+```
+
+Operations that TypeScript doesn’t know to work on strings will not be allowed:
+
+```ts
+rapper.push('!');
+// ~~~~
+// Property 'push' does not exist on type 'string'.
+```
+
+Types can also be more complex shapes, most notably objects. In the following
+snippet, TypeScript knows the birthNames object doesn’t have a middleName key and
+complains:
+
+```ts
+let cher = {
+firstName: "Cherilyn",
+lastName: "Sarkisian",
+};
+cher.middleName;
+// ~~~~~~~~~~
+// Property 'middleName' does not exist on type
+// '{ firstName: string; lastName: string; }'.
+```
+
+TypeScript’s understanding of object shapes allows it to report issues with the usage
+of objects, not just assignability. Chapter 4, “Objects” will describe more of Type‐
+Script’s powerful features around objects and object types.
 
 #### Modules
 
+The JavaScript programming language did not include a specification for how files
+can share code between each other until relatively recently in its history. ECMAScript
+2015 added “ECMAScript modules,” or ESM, to standardize import and export
+syntax between files.
+
+For reference, this module file imports a value from a sibling ./values file and
+exports a doubled variable:
+
+```ts
+import { value } from "./values";
+export const doubled = value * 2;
+```
+
+To match with the ECMAScript specification, in this book I’ll use the following
+nomenclature:
+
+**Module**
+A file with a top-level export or import
+**Script**
+Any file that is not a module
+
+TypeScript is able to work with those modern module files as well as older files.
+Anything declared in a module file will be available only in that file unless an explicit
+export statement in that file exports it. A variable declared in one module with
+the same name as a variable declared in another file won’t be considered a naming
+conflict (unless one file imports the other file’s variable).
+
+The following a.ts and b.ts files are both modules that export a similarly named
+shared variable without issue. c.ts causes a type error because it has a naming
+conflict between an imported shared and its own value:
+
+```ts
+// a.ts
+export const shared = "Cher";
+// b.ts
+export const shared = "Cher";
+// c.ts
+import { shared } from "./a";
+// ~~~~~~
+// Error: Import declaration conflicts with local declaration of 'shared'.
+export const shared = "Cher";
+// ~~~~~~
+// Error: Individual declarations in merged declaration
+// 'shared' must be all exported or all local.
+```
+
+If a file is a script, though, TypeScript will consider it to be globally scoped, meaning
+all scripts have access to its contents. That means variables declared in a script file
+cannot have the same name as variables declared in other script files.
+
+The following a.ts and b.ts files are considered scripts because they do not have
+module-style export or import statements. That means their variables of the same
+name conflict with each other as if they were declared in the same file:
+
+```ts
+// a.ts
+const shared = "Cher";
+// ~~~~~~
+// Cannot redeclare block-scoped variable 'shared'.
+// b.ts
+const shared = "Cher";
+// ~~~~~~
+// Cannot redeclare block-scoped variable 'shared'.
+```
+
+If you see these “Cannot redeclare…” errors in a TypeScript file, it may be because
+you have yet to add an export or import statement to the file. Per the ECMAScript
+specification, if you need a file to be a module without an export or import statement,
+you can add an export {}; somewhere in the file to force it to be a module:
+
+```ts
+// a.ts and b.ts
+const shared = "Cher"; // Ok
+export {};  
+```
+
+*TypeScript will not recognize the types of imports and exports
+in TypeScript files written using older module systems such as
+CommonJS. TypeScript will generally see values returned from
+CommonJS-style require functions to be typed as any.*
+
 ### Summary
+
+In this chapter, you saw how TypeScript’s type system works at its core:
+
+• What a “type” is and the primitive types recognized by TypeScript
+• What a “type system” is and how TypeScript’s type system understands code
+• How type errors compare to syntax errors
+• Inferred variable types and variable assignability
+• Type annotations to explicitly declare variable types and avoid evolving any types
+• Object member checking on type shapes
+• ECMAScript module files’ declaration scoping compared to script files
+
+*Now that you’ve finished reading this chapter, practice what you’ve
+learned on <https://learningtypescript.com/the-type-system>.*
+
+*Why did the number and string break up?
+They weren’t each other’s types.*
