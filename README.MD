@@ -8,3 +8,5 @@ Using Type-Safe JavaScript
 ## [CHAPTER 01  From JavaScript to TypeScript](CHAPTER_01/readme.md)
 
 ## [CHAPTER 02 The Type System](CHAPTER_02/readme.md)
+
+## [CHAPTER 3 Unions and Literals](CHAPTER_03/readme.md)

@@ -1,5 +1,10 @@
 # CHAPTER 3 Unions and Literals
 
+- [CHAPTER 3 Unions and Literals](#chapter-3-unions-and-literals)
+  - [Union Types](#union-types)
+    - [Declaring Union Types](#declaring-union-types)
+    - [Union Properties](#union-properties)
+  - [Narrowing](#narrowing)
 _Nothing is constant
 Values may change over time
 (well, except constants)_
@@ -17,11 +22,14 @@ concepts that TypeScript works with to make inferences on top of those values:
   Put together, unions and narrowing are powerful concepts that allow TypeScript to
   make informed inferences on your code many other mainstream languages cannot.
 
-##  Union Types
+## Union Types
+
 Take this mathematician variable:
+
 ```ts
 let mathematician = Math.random() > 0.5 ? undefined : "Mark Goldberg";
 ```
+
 What type is mathematician?
 
 It’s neither only undefined nor only string, even though those are both potential
@@ -53,6 +61,7 @@ if(Math.random()>0.5){
     tinker = "SUSAN LANGER";//ok
 }
 ```
+
 Union type declarations can be placed anywhere you might declare a type with a type
 annotation.
 
@@ -61,6 +70,7 @@ write boolean | number or number | boolean and TypeScript will
 treat both the exact same.*
 
 ### Union Properties
+
 When a value is known to be a union type, TypeScript will only allow you to access
 member properties that exist on all possible types in the union. It will give you a
 type-checking error if you try to access a type that doesn’t exist on all possible types.
@@ -92,6 +102,7 @@ types, your code will need to indicate to TypeScript that the value at that loca
 code is one of those more specific types: a process called narrowing.
 
 ## Narrowing
+
 Narrowing is when TypeScript infers from your code that a value is of a more specific
 type than what it was defined, declared, or previously inferred as. Once TypeScript
 knows that a value’s type is more narrow than previously known, it will allow you to
