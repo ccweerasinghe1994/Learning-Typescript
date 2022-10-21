@@ -38,3 +38,65 @@ undefined. Hovering over the mathematician variable would show its type as strin
 ![Figure 3-1](../img/7.png)
 Figure 3-1. TypeScript reporting the mathematician variable as being type string |
 undefined
+
+### Declaring Union Types
+
+Union types are an example of a situation when it might be useful to give an explicit
+type annotation for a variable even though it has an initial value. In this example,
+thinker starts off null but is known to potentially contain a string instead. Giving
+it an explicit string | null type annotation means TypeScript will allow it to be
+assigned values of type string:
+
+```ts
+let tinker:string|null = null;
+if(Math.random()>0.5){
+    tinker = "SUSAN LANGER";//ok
+}
+```
+Union type declarations can be placed anywhere you might declare a type with a type
+annotation.
+
+*The order of a union type declaration does not matter. You can
+write boolean | number or number | boolean and TypeScript will
+treat both the exact same.*
+
+### Union Properties
+When a value is known to be a union type, TypeScript will only allow you to access
+member properties that exist on all possible types in the union. It will give you a
+type-checking error if you try to access a type that doesn’t exist on all possible types.
+
+In the following snippet, physicist is of type number | string. While .toString()
+exists in both types and is allowed to be used, .toUpperCase() and .toFixed()
+are not because .toUpperCase() is missing on the number type and .toFixed() is
+missing on the string type:
+
+```ts
+let physicist = Math.random() > 0.5 ? "Marie Curie" : 84;
+physicist.toString(); // Ok
+physicist.toUpperCase();
+// ~~~~~~~~~~~
+// Error: Property 'toUpperCase' does not exist on type 'string | number'.
+// Property 'toUpperCase' does not exist on type 'number'.
+physicist.toFixed();
+// ~~~~~~~
+// Error: Property 'toFixed' does not exist on type 'string | number'.
+// Property 'toFixed' does not exist on type 'string'.
+```
+
+Restricting access to properties that don’t exist on all union types is a safety measure.
+If an object is not known to definitely be a type that contains a property, TypeScript
+will believe it unsafe to try to use that property. The property might not exist!
+
+To use a property of a union typed value that only exists on a subset of the potential
+types, your code will need to indicate to TypeScript that the value at that location in
+code is one of those more specific types: a process called narrowing.
+
+## Narrowing
+Narrowing is when TypeScript infers from your code that a value is of a more specific
+type than what it was defined, declared, or previously inferred as. Once TypeScript
+knows that a value’s type is more narrow than previously known, it will allow you to
+treat the value like that more specific type. A logical check that can be used to narrow
+types is called a `type guard`.
+
+Let’s cover two of the common type guards TypeScript can use to deduce type
+narrowing from your code.
