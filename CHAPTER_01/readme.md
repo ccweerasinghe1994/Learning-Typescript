@@ -51,7 +51,7 @@ TC39, has released new versions of ECMAScript—the language specification that
 JavaScript is based on—yearly since 2015 with new features that bring it in line
 with other modern languages. Impressively, even with regular new language versions,
 JavaScript has managed to maintain backward compatibility for decades in varying
-environments, including browsers, embedded applications, and server runtime's.
+environments, including browsers, embedded applications, and server runtime.
 
 Today, JavaScript is a wonderfully flexible language with a lot of strengths. One
 should appreciate that while JavaScript has its quirks, it’s also helped enable the

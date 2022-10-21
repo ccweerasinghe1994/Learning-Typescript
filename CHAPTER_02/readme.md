@@ -66,7 +66,7 @@ such as this screenshot showing hovering over a string variable
 let singer:string = "Aertha";
 ```
 
-TypeScript is also smart enough to be able to infer the type of a variable whose starting
+TypeScript is also smart enough to be able to infer the type of variable whose starting
 value is computed. In this example, TypeScript knows that the ternary expression
 always results in a string, so the bestSong variable is a string:
 
