@@ -113,3 +113,22 @@ types is called a `type guard`.
 
 Let’s cover two of the common type guards TypeScript can use to deduce type
 narrowing from your code.
+
+### Assignment Narrowing
+If you directly assign a value to a variable, TypeScript will narrow the variable’s type
+to that value’s type.
+
+Here, the admiral variable is declared initially as a number | string, but after being
+assigned the value "Grace Hopper", TypeScript knows it must be a string:
+
+```ts
+let admiral:string|number;
+
+admiral = "kevin";
+
+admiral.toLowerCase();
+admiral.toFixed();
+```
+here we can see 
+
+![](../img/8.png)
