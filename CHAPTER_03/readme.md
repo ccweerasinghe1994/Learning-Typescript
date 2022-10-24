@@ -1,11 +1,10 @@
 # CHAPTER 3 Unions and Literals
 
 - [CHAPTER 3 Unions and Literals](#chapter-3-unions-and-literals)
-  - [Union Types](#union-types)
-    - [Declaring Union Types](#declaring-union-types)
-    - [Union Properties](#union-properties)
-  - [Narrowing](#narrowing)
-
+    - [Union Types](#union-types)
+        - [Declaring Union Types](#declaring-union-types)
+        - [Union Properties](#union-properties)
+    - [Narrowing](#narrowing)
 
 _Nothing is constant
 Values may change over time
@@ -58,8 +57,8 @@ it an explicit string | null type annotation means TypeScript will allow it to b
 assigned values of type string:
 
 ```ts
-let tinker:string|null = null;
-if(Math.random()>0.5){
+let tinker: string | null = null;
+if (Math.random() > 0.5) {
     tinker = "SUSAN LANGER";//ok
 }
 ```
@@ -115,6 +114,7 @@ Let’s cover two of the common type guards TypeScript can use to deduce type
 narrowing from your code.
 
 ### Assignment Narrowing
+
 If you directly assign a value to a variable, TypeScript will narrow the variable’s type
 to that value’s type.
 
@@ -122,27 +122,28 @@ Here, the admiral variable is declared initially as a number | string, but after
 assigned the value "Grace Hopper", TypeScript knows it must be a string:
 
 ```ts
-let admiral:string|number;
+let admiral: string | number;
 
 admiral = "kevin";
 
 admiral.toLowerCase();
 admiral.toFixed();
 ```
-here we can see 
+
+here we can see
 
 ![](../img/8.png)
 
 Assignment narrowing comes into play when a variable is given an explicit union
 type annotation and an initial value too. TypeScript will understand that while the
-variable may later receive a value of any of the union typed values, it starts off as only
+variable may later receive a value of the union typed values, it starts off as only
 the type of its initial value.
 
 In the following snippet, inventor is declared as type number | string, but Type‐
 Script knows it’s immediately narrowed to a string from its initial value:
 
 ```ts
-let inventor:(number | string) = "kevin";
+let inventor: (number | string) = "kevin";
 
 inventor.toLowerCase();
 inventor.toFixed();
@@ -153,3 +154,38 @@ inventor.toFixed();
 typescript is showing the error when we are trying to use number methods.
 
 ### Conditional Checks
+
+A common way to get TypeScript to narrow a variable’s value is to write an if
+statement checking the variable for being equal to a known value. TypeScript is smart
+enough to understand that inside the body of that if statement, the variable must be
+the same type as the known value
+
+```ts
+let scientist = Math.random() > 0.5 ? "kevin" : 51;
+
+if (scientist === 'kevin') {
+    scientist.toUpperCase();
+}
+scientist.toUpperCase();
+```
+
+**️☠️ ERROR ☠️️**
+
+```bash
+➜  Learning-Typescript git:(master) ✗ tsc index.ts             
+index.ts:6:11 - error TS2339: Property 'toUpperCase' does not exist on type 'string | number'.
+  Property 'toUpperCase' does not exist on type 'number'.
+
+6 scientist.toUpperCase();
+            ~~~~~~~~~~~
+
+
+Found 1 error in index.ts:6
+
+```
+
+Narrowing with conditional logic shows TypeScript’s type-checking logic mirroring
+good JavaScript coding patterns. If a variable might be one of several types, you’ll
+generally want to check its type for being what you need. TypeScript is forcing us to
+play it safe with our code. Thanks, TypeScript!
+

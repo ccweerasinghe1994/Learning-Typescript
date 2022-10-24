@@ -1,32 +1,16 @@
 console.log('Nothing is worth more than laughter');
-
-
-let singer: string = "Aertha";
-
-
-let bestSong = Math.random() > 0.5 ? "chain of Fools" : "respect";
-
-
-let admiral: string | number;
-
+var singer = "Aertha";
+var bestSong = Math.random() > 0.5 ? "chain of Fools" : "respect";
+var admiral;
 admiral = "kevin";
-
 admiral.toLowerCase();
 admiral.toFixed();
 // ---------------------------------------------------------
-let inventor: (number | string) = "kevin";
-
+var inventor = "kevin";
 inventor.toLowerCase();
 inventor.toFixed();
 // ---------------------------------------------------------
-let scientist = Math.random() > 0.5 ? "kevin" : 51;
-
-if (scientist === 'kevin') {
-    scientist.toUpperCase();
-}
-scientist.toUpperCase();
 // ---------------------------------------------------------
-
 // ---------------------------------------------------------
 // ---------------------------------------------------------
 // ---------------------------------------------------------
