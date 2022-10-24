@@ -1,5 +1,16 @@
-var scientist = Math.random() > 0.5 ? "kevin" : 51;
-if (scientist === 'kevin') {
-    scientist.toUpperCase();
+var researcher = Math.random() > 0.5
+    ? "Rosalind Franklin"
+    : 51;
+if (typeof researcher === 'string') {
+    researcher.toUpperCase();
 }
-scientist.toUpperCase();
+// Logical negations from ! and else statements work as well:
+if (!(typeof researcher === 'string')) {
+    researcher.toFixed();
+}
+else {
+    researcher.toUpperCase();
+}
+//Those code snippets can be rewritten with a ternary statement, which is also sup‐
+// ported for type narrowing:
+typeof researcher === 'string' ? researcher.toUpperCase() : researcher.toFixed();

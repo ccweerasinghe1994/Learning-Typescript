@@ -189,3 +189,37 @@ good JavaScript coding patterns. If a variable might be one of several types, yo
 generally want to check its type for being what you need. TypeScript is forcing us to
 play it safe with our code. Thanks, TypeScript!
 
+### Typeof Checks
+
+In addition to direct value checking, TypeScript also recognizes the typeof operator
+in narrowing down variable types.
+
+Similar to the scientist example, checking if typeof researcher is "string" indi‐
+cates to TypeScript that the type of researcher must be string:
+
+```ts
+let researcher = Math.random() > 0.5
+    ? "Rosalind Franklin"
+    : 51;
+
+if (typeof researcher === 'string') {
+    researcher.toUpperCase();
+}
+// Logical negations from ! and else statements work as well:
+if (!(typeof researcher === 'string')) {
+    researcher.toFixed();
+} else {
+    researcher.toUpperCase();
+}
+
+//Those code snippets can be rewritten with a ternary statement, which is also sup‐
+// ported for type narrowing:
+
+typeof researcher === 'string' ? researcher.toUpperCase() : researcher.toFixed();
+```
+
+Whichever way you write them, typeof checks are a practical and often used way to
+narrow types.
+
+TypeScript’s type checker recognizes several more forms of narrowing that we’ll see in
+later chapters.
