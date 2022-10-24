@@ -223,3 +223,131 @@ narrow types.
 
 TypeScript’s type checker recognizes several more forms of narrowing that we’ll see in
 later chapters.
+
+## Literal Types
+
+Now that I’ve shown union types and narrowing for working with values that may be
+two or more potential types, I’d like go the opposite direction by introducing literal
+types: more specific versions of primitive types.
+
+Take this philosopher variable:
+
+```ts
+const philosopher = "Hypatia";
+```
+
+What type is philosopher?
+
+At first glance, you might say string—and you’d be correct. philosopher is indeed a
+string.
+
+But! philosopher is not just any old string. It’s specifically the value "Hypatia".
+Therefore, the philosopher variable’s type is technically the more specific "Hypatia".
+
+Such is the concept of a literal type: the type of value that is known to be a specific
+value of a primitive, rather than any of those primitive’s values at all. The primitive
+type string represents the set of all possible strings that could ever exist; the literal
+type "Hypatia" represents just that one string.
+
+If you declare a variable as const and directly give it a literal value, TypeScript will
+infer the variable to be that literal value as a type. This is why, when you hover a
+mouse over a const variable with an initial literal value in an IDE such as VS Code,
+it will show you the variable’s type as that literal (Figure 3-2) instead of the more
+general primitive (Figure 3-3).
+
+![Figure 3-2](../img/10.png)
+
+Figure 3-2. TypeScript reporting a const variable as being specifically its literal type
+
+![Figure 3-3](../img/11.png)
+
+Figure 3-3. TypeScript reporting a let variable as being generally its primitive type
+
+You can think of each primitive type as a union of every possible matching literal
+value. In other words, a primitive type is the set of all possible literal values of that
+type.
+Other than the boolean, null, and undefined types, all other primitives such as
+number and string have an infinite number of literal types. The common types you’ll
+find in typical TypeScript code are just those:
+
+- 💧 boolean: just true | false
+- 💧 null and undefined: both just have one literal value, themselves
+- 💧 number: 0 | 1 | 2 | ... | 0.1 | 0.2 | ...
+- 💧 string: "" | "a" | "b" | "c" | ... | "aa" | "ab" | "ac" | ...
+
+Union type annotations can mix and match between literals and primitives. A repre‐
+sentation of a lifespan, for example, might be represented by any number or one of a
+couple known edge cases:
+
+```ts
+let philosopher = "Hypatia";
+
+let lifeSpan: number | "ongoing" | "uncertain";
+
+lifeSpan = 89;
+
+lifeSpan = "ongoing";
+
+lifeSpan = "uncertain";
+
+lifeSpan = true;
+```
+
+**️☠️ ERROR ☠️️**
+
+```bash
+➜  Learning-Typescript git:(master) tsc index.ts 
+index.ts:11:1 - error TS2322: Type 'true' is not assignable to type 'number | "ongoing" | "uncertain"'.
+
+11 lifeSpan = true;
+   ~~~~~~~~
+
+
+Found 1 error in index.ts:11
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

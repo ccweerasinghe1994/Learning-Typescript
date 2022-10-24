@@ -47,6 +47,17 @@ typeof researcher === 'string' ? researcher.toUpperCase() : researcher.toFixed()
 
 
 // ---------------------------------------------------------
+let philosopher = "Hypatia";
+
+let lifeSpan: number | "ongoing" | "uncertain";
+
+lifeSpan = 89;
+
+lifeSpan = "ongoing";
+
+lifeSpan = "uncertain";
+
+lifeSpan = true;
 // ---------------------------------------------------------
 // ---------------------------------------------------------
 // ---------------------------------------------------------
