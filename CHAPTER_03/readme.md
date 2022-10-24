@@ -132,3 +132,24 @@ admiral.toFixed();
 here we can see 
 
 ![](../img/8.png)
+
+Assignment narrowing comes into play when a variable is given an explicit union
+type annotation and an initial value too. TypeScript will understand that while the
+variable may later receive a value of any of the union typed values, it starts off as only
+the type of its initial value.
+
+In the following snippet, inventor is declared as type number | string, but Type‐
+Script knows it’s immediately narrowed to a string from its initial value:
+
+```ts
+let inventor:(number | string) = "kevin";
+
+inventor.toLowerCase();
+inventor.toFixed();
+```
+
+![img](../img/9.png)
+
+typescript is showing the error when we are trying to use number methods.
+
+### Conditional Checks
